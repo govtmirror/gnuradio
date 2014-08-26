@@ -137,6 +137,7 @@
 		<block>blocks_null_sink</block>
                 <block>blocks_copy</block>
                 <block>blocks_nop</block>
+                <block>blocks_process</block>
                 <block>blocks_ctrlport_monitor</block>
                 <block>blocks_ctrlport_monitor_performance</block>
 	</cat>

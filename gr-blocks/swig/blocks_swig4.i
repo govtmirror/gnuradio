@@ -60,6 +60,7 @@
 #include "gnuradio/blocks/probe_signal_vi.h"
 #include "gnuradio/blocks/probe_signal_vf.h"
 #include "gnuradio/blocks/probe_signal_vc.h"
+#include "gnuradio/blocks/process.h"
 #include "gnuradio/blocks/or_bb.h"
 #include "gnuradio/blocks/or_ss.h"
 #include "gnuradio/blocks/or_ii.h"
@@ -79,6 +80,7 @@
 %include "gnuradio/blocks/probe_signal_vi.h"
 %include "gnuradio/blocks/probe_signal_vf.h"
 %include "gnuradio/blocks/probe_signal_vc.h"
+%include "gnuradio/blocks/process.h"
 %include "gnuradio/blocks/or_bb.h"
 %include "gnuradio/blocks/or_ss.h"
 %include "gnuradio/blocks/or_ii.h"
@@ -117,6 +119,7 @@ GR_SWIG_BLOCK_MAGIC2(blocks, pdu_set);
 GR_SWIG_BLOCK_MAGIC2(blocks, pdu_remove);
 GR_SWIG_BLOCK_MAGIC2(blocks, pdu_to_tagged_stream);
 GR_SWIG_BLOCK_MAGIC2(blocks, probe_rate);
+GR_SWIG_BLOCK_MAGIC2(blocks, process);
 GR_SWIG_BLOCK_MAGIC2(blocks, or_bb);
 GR_SWIG_BLOCK_MAGIC2(blocks, or_ss);
 GR_SWIG_BLOCK_MAGIC2(blocks, or_ii);

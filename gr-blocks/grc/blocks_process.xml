@@ -8,13 +8,7 @@
 	<name>Process</name>
 	<key>blocks_process</key>
 	<import>from gnuradio import blocks</import>
-	<make>blocks.process($i_type.size*$vlen, $file, $command)</make>
-	<param>
-		<name>Command</name>
-		<key>command</key>
-		<value></value>
-		<type>text</type>
-	</param>
+	<make>blocks.process($i_vlen*$i_type.size,$o_vlen*$o_type.size,$command)</make>
 	<param>
 		<name>Input Type</name>
 		<key>i_type</key>
@@ -90,15 +84,18 @@
 	<param>
 		<name>Command</name>
 		<key>command</key>
-		<type>text</type>
+		<value></value>
+		<type>string</type>
 	</param>
+
 	<check>$i_vlen &gt; 0</check>
+	<check>$o_vlen &gt; 0</check>
+
 	<sink>
 		<name>in</name>
 		<type>$i_type</type>
 		<vlen>$i_vlen</vlen>
 	</sink>
-	<check>$o_vlen &gt; 0</check>
 	<source>
 		<name>out</name>
 		<type>$o_type</type>

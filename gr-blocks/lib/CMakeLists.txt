@@ -159,6 +159,7 @@ list(APPEND gr_blocks_sources
     random_pdu_impl.cc
     plateau_detector_fb_impl.cc
     probe_rate_impl.cc
+    process_impl.cc
     regenerate_bb_impl.cc
     repack_bits_bb_impl.cc
     repeat_impl.cc

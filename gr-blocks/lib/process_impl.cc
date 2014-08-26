@@ -41,8 +41,8 @@ namespace gr {
 
     process_impl::process_impl(size_t i_itemsize, size_t o_itemsize, const char *command)
       : block("process",
-                      io_signature::make(1, 1, i_itemsize),
-                      io_signature::make(1, 1, o_itemsize)),
+              io_signature::make(1, 1, i_itemsize),
+              io_signature::make(1, 1, o_itemsize)),
         d_i_itemsize(i_itemsize), d_o_itemsize(o_itemsize), d_fp(0)
     {
       d_fp = popen(command, "r"); // open process and get pipe file
@@ -56,53 +56,54 @@ namespace gr {
 
     int
     process_impl::general_work(int noutput_items,
-                                gr_vector_int &ninput_items,
-                                gr_vector_const_void_star &input_items,
-                                gr_vector_void_star &output_items)
+                               gr_vector_int &ninput_items,
+                               gr_vector_const_void_star &input_items,
+                               gr_vector_void_star &output_items)
     {
-      char *inbuf = (char*)input_items[0];
+      const char *inbuf = (const char *)input_items[0];
       char *outbuf = (char*)output_items[0];
 
       int n_input = ninput_items[0];
       int n_output = noutput_items;
-      
+
       int n_written = 0;
 
-      if(d_fp == NULL)
+      if (d_fp == NULL)
 	throw std::runtime_error("work with process not open");
 
-      while(n_written < noutput_items) {
+      while (n_written < noutput_items) {
         int count = fwrite(inbuf, d_i_itemsize, n_input - n_written, d_fp);
-        if(count == 0) {
-          if(ferror(d_fp)) {
+        if (count == 0) {
+          if (ferror(d_fp)) {
             std::stringstream s;
             s << "process write failed with error " << fileno(d_fp) << std::endl;
-            throw std::runtime_error(s.str());
+            throw std::runtime_error(s.str());  // FIXME: log error
           }
           else { // is EOF
             break;
           }
         }
+
         n_written += count;
         inbuf += count * d_i_itemsize;
       }
 
       fflush (d_fp);
 
-      while(n_output) {
+      while (n_output) {
 	int count = fread(outbuf, d_o_itemsize, n_output, d_fp);
 
 	n_output -= count;
 	outbuf += count * d_o_itemsize;
 
-	if(n_output == 0)		// done
+	if (n_output == 0)	         // done
 	  break;
       }
 
-      if(n_output > 0) {	     		// EOF or error
-	if(n_output == noutput_items)       // we didn't read anything; say we're done
+      if (n_output > 0) {                // EOF or error
+	if (n_output == noutput_items)   // we didn't read anything; say we're done
 	  return -1;
-	return noutput_items - n_output;	// else return partial result
+	return noutput_items - n_output; // else return partial result
       }
 
       fflush (d_fp);
