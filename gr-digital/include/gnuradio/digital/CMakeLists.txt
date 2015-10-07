@@ -36,6 +36,7 @@ install(FILES
     additive_scrambler_bb.h
     api.h
     binary_slicer_fb.h
+    c4fm_demod_cf.h
     clock_recovery_mm_cc.h
     clock_recovery_mm_ff.h
     cma_equalizer_cc.h

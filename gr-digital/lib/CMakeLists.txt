@@ -54,6 +54,7 @@ list(APPEND digital_sources
     ${generated_sources}
     additive_scrambler_bb_impl.cc
     binary_slicer_fb_impl.cc
+    c4fm_demod_cf_impl.cc
     clock_recovery_mm_cc_impl.cc
     clock_recovery_mm_ff_impl.cc
     cma_equalizer_cc_impl.cc

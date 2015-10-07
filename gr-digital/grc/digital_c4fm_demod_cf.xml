@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+###################################################
+##C4FM Demod
+###################################################
+ -->
+<block>
+	<name>C4FM Demod</name>
+	<key>digital_c4fm_demod_cf</key>
+	<import>from gnuradio import digital</import>
+	<make>digital.c4fm_demod_cf($sample_rate,$symbol_rate,$max_deviation,
+                  $loop_gain,$rrc_rolloff,$max_timing_offset,$use_chan_filt,
+                  $use_freq_xlat,$offset_freq,$min_sps)
+        </make>
+
+        <param>
+          <name>Sample Rate (Hz)</name>
+          <key>sample_rate</key>
+          <type>float</type>
+        </param>
+
+        <param>
+          <name>Symbol Rate (Hz)</name>
+          <key>symbol_rate</key>
+          <type>float</type>
+        </param>
+
+        <param>
+          <name>Max Deviation (Hz)</name>
+          <key>max_deviation</key>
+          <type>float</type>
+        </param>
+
+        <param>
+          <name>Loop Gain</name>
+          <key>loop_gain</key>
+          <value>1e-3</value>
+          <type>float</type>
+        </param>
+
+        <param>
+          <name>RRC Rolloff</name>
+          <key>rrc_rolloff</key>
+          <value>0.35</value>
+          <type>float</type>
+        </param>
+
+        <param>
+          <name>Max Timing Offset</name>
+          <key>max_timing_offset</key>
+          <value>1e-4</value>
+          <type>float</type>
+        </param>
+
+        <param>
+          <name>Use Channel Filter</name>
+          <key>use_chan_filt</key>
+          <value>True</value>
+          <type>bool</type>
+        </param>
+
+        <param>
+          <name>Use Freq. Xlat.</name>
+          <key>use_freq_xlat</key>
+          <value>False</value>
+          <type>bool</type>
+        </param>
+
+        <param>
+          <name>Freq. Offset (Hz)</name>
+          <key>offset_freq</key>
+          <value>0.0</value>
+          <type>float</type>
+        </param>
+
+        <param>
+          <name>Min. SPS (0=auto)</name>
+          <key>min_sps</key>
+          <value>0.0</value>
+          <type>float</type>
+        </param>
+
+	<sink>
+          <name>iq</name>
+	  <type>complex</type>
+	</sink>
+
+	<source>
+	  <name>syms</name>
+	  <type>float</type>
+	</source>
+</block>
