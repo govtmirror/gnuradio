@@ -59,7 +59,8 @@ namespace gr {
 	d_fftsize(fftsize), d_fftavg(1.0),
 	d_wintype((filter::firdes::win_type)(wintype)),
 	d_center_freq(fc), d_bandwidth(bw), d_name(name),
-	d_nconnections(nconnections), d_parent(parent)
+	d_nconnections(nconnections), d_enable_relative_click_freq(false),
+        d_parent(parent)
     {
       // Required now for Qt; argc must be greater than 0 and argv
       // must have at least one valid character. Must be valid through
@@ -453,6 +454,12 @@ namespace gr {
     }
 
     void
+    freq_sink_c_impl::enable_relative_click_freq(bool en)
+    {
+      d_enable_relative_click_freq = en;
+    }
+
+    void
     freq_sink_c_impl::_reset()
     {
       d_trigger_count = 0;
@@ -576,6 +583,9 @@ namespace gr {
     {
       if(d_main_gui->checkClicked()) {
         double freq = d_main_gui->getClickedFreq();
+	if (d_enable_relative_click_freq) {
+	  freq = freq - d_center_freq;
+	}
         message_port_pub(pmt::mp("freq"),
                          pmt::cons(pmt::mp("freq"),
                                    pmt::from_double(freq)));

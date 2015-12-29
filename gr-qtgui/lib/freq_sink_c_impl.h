@@ -46,6 +46,7 @@ namespace gr {
       double d_bandwidth;
       std::string d_name;
       int d_nconnections;
+      bool d_enable_relative_click_freq;
 
       bool d_shift;
       fft::fft_complex *d_fft;
@@ -152,6 +153,7 @@ namespace gr {
       void clear_max_hold();
       void clear_min_hold();
       void disable_legend();
+      void enable_relative_click_freq(bool en);
       void reset();
 
       int work(int noutput_items,

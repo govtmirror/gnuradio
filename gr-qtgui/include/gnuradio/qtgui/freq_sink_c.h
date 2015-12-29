@@ -1,6 +1,6 @@
 /* -*- c++ -*- */
 /*
- * Copyright 2012,2014-2015 Free Software Foundation, Inc.
+ * Copyright 2012,2014-2016 Free Software Foundation, Inc.
  *
  * This file is part of GNU Radio
  *
@@ -181,6 +181,7 @@ namespace gr {
       virtual void clear_max_hold() = 0;
       virtual void clear_min_hold() = 0;
       virtual void disable_legend() = 0;
+      virtual void enable_relative_click_freq(bool en=false) = 0;
       virtual void reset() = 0;
 
       QApplication *d_qApplication;

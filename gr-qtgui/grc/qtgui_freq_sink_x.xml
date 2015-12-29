@@ -27,6 +27,7 @@ self.$(id).enable_autoscale($autoscale)
 self.$(id).enable_grid($grid)
 self.$(id).set_fft_average($average)
 self.$(id).enable_control_panel($ctrlpanel)
+self.$(id).enable_relative_click_freq($relative_click_freq)
 
 if not $legend:
   self.$(id).disable_legend()
@@ -291,6 +292,21 @@ $(gui_hint()($win))</make>
     </option>
   </param>
 
+  <param>
+    <name>Relative Click Freq</name>
+    <key>relative_click_freq</key>
+    <value>False</value>
+    <type>enum</type>
+    <hide>part</hide>
+    <option>
+      <name>Yes</name>
+      <key>True</key>
+    </option>
+    <option>
+      <name>No</name>
+      <key>False</key>
+    </option>
+  </param>
 
   <!-- Begin Trigger Tab items -->
   <param>
